@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} <title>Updated details</title> {% endblock %}
+
+{% block content %}
+
+   {% for message in messages %}
+    <div class="alert alert-{{message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+ <div class="container-fluid bg-dark text-light d-flex justify-content-between">
+    <h1>The Students Reviewed Data</h1>
+    <a class="btn btn-primary p-1 m-2" href="{% url 'home' %}"> Home Page</a>
+ </div>
+{% if records %}
+<table class="table table-bordered table-hover">
+    <thead class="bg-info text-light">
+        <tr>
+            <th scope="col">Work</th>
+            <th scope="col">Week</th>
+            <th scope="col">Day</th>
+            <th scope="col">Approved Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Supervisor</th>
+            <th scope="col">Feedback</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        {% for record in records %}
+            <tr>
+                <td>{{ record.work }}</td>
+                <td>{{ record.week }}</td>
+                <td>{{ record.week_day }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.time }}</td>
+                <td>{{ record.supervisor }}</td>
+                <td>{{ record.feedback }}</td>
+                {% if record.approved %}
+                    <td>Appro
+                        <i class="bi bi-check2-circle text-success"></i> <!-- Icon for approval -->
+                    </td>
+                {% else %}
+                    <td>NA <i class="bi bi-exclamation-circle text-danger"></i></td>
+                {% endif %}
+                
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No students data available.</p>
+<p>{{records}}</p>
+{% endif %}
+
+{% endblock %}

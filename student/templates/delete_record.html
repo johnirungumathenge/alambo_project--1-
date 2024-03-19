@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Record</title>
+</head>
+<body>
+   {% block content %}
+   <div class="container-fluid bg-dark text-white">
+    <h1>Delete Record</h1>
+   </div>
+   <p>Are you sure you want to delete this record?</p>
+   <form method="POST">
+       {% csrf_token %}
+       <button class="btn btn-danger" type="submit">Delete</button>
+   </form>
+   <a class="btn btn-info text-decoration-none mt-3" href="{% url 'view_data'%}">Cancel</a>
+
+    {% endblock %}
+</body>
+</html>

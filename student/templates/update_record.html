@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details Form</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container-fluid bg-dark text-white justify-content-between d-flex">
+        <h1>Update Details</h1>
+        <a class="btn btn-danger p-2 m-2" href="{% url 'view_data' %}">cancel</a>
+    </div>
+    <div class="container form-container">
+        
+    <form method="POST" class="form-control">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" >Update Record</button>
+    </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

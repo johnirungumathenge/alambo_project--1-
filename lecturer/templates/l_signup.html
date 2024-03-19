@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="container">
+            {% if messages %}
+    
+                {% for message in messages %}
+                
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Oops!{{ message }} </strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+  
+            {% endif %}
+    </div>
+   <div class="container">    
+    <form method="post" action="{% url 'lsignup' %}" id="form" class="form-control" enctype="multipart/form-data">
+        <h3 class="text-center text-dark p-2 m-2">Lecturer Signup</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="container text-center">
+            <input type="submit" value="Register" class="btn btn-info">
+        </div>
+       
+        <p>Have account? <a href="{% url 'lsignin' %}" class="text-decoration-none text-center">login</a></p>
+    </form>
+   </div>
+</div>
+{% endblock %}
+
+
+
+</body>
+</html>
